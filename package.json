@@ -1,0 +1,42 @@
+{
+  "name": "kong-sdk",
+  "version": "0.0.1",
+  "description": "The open source Kong SDK built by VEED",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "lint": "prettier --check **/*.ts",
+    "build": "tsc",
+    "prepublishOnly": "npm run test && npm run build",
+    "test": "echo 'No tests yet'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/veedstudio/kong-sdk.git"
+  },
+  "keywords": [
+    "VEED",
+    "Kong",
+    "SDK",
+    "Admin",
+    "API",
+    "Micro-services"
+  ],
+  "author": "Jacobus Meulen <sjaak@veed.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/veedstudio/kong-sdk/issues"
+  },
+  "homepage": "https://github.com/veedstudio/kong-sdk#readme",
+  "dependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.6.1",
+    "axios": "^0.21.1",
+    "jest": "^26.6.3",
+    "jest-sonar-reporter": "^2.0.0",
+    "prettier": "^2.3.0",
+    "ts-jest": "^26.5.5",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}
