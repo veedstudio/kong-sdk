@@ -24,6 +24,7 @@ jobs:
           restore-keys: node_modules-${{ hashFiles('package-lock.json') }}
 
   lint:
+    needs: [install]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -40,6 +41,7 @@ jobs:
       - run: npm run lint
 
   compile:
+    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -56,6 +58,7 @@ jobs:
       - run: npm run build
 
   test:
+    needs: [compile]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -72,6 +75,7 @@ jobs:
       - run: npm run test
 
   publish:
+    needs: [test]
     runs-on: ubuntu-latest
     if: github.event_name == 'release' && github.event.action == 'created'
     steps:
