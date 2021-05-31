@@ -1,5 +1,5 @@
 {
-  "name": "kong-sdk",
+  "name": "@veedstudio/kong-sdk",
   "version": "0.0.1",
   "description": "The open source Kong SDK built by VEED",
   "main": "dist/index.js",
