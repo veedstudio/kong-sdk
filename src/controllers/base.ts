@@ -51,7 +51,7 @@ export abstract class BaseController<T extends BaseResource> {
 
     return await this.performRequest<T>(
       'post',
-      `${this.getResourcePath()}/${resource.name}`,
+      `${this.getResourcePath()}`,
       resource
     );
   }

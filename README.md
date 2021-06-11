@@ -10,4 +10,4 @@ npm install @veedstudio/kong-sdk
 ## Documentation
 To be made available soon
 
-## Contributing
+## Contributing 
