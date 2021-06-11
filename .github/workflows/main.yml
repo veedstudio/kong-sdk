@@ -18,11 +18,11 @@ jobs:
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
-          key: node_modules-${{ hashFiles('package-lock.json') }}
+          key: node_modules-${{ github.sha }}
           path: |
             ./node_modules
             ./dist
-          restore-keys: node_modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: node_modules-${{ github.sha }}
 
   lint:
     needs: [install]
@@ -35,11 +35,11 @@ jobs:
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
-          key: node_modules-${{ hashFiles('package-lock.json') }}
+          key: node_modules-${{ github.sha }}
           path: |
             ./node_modules
             ./dist
-          restore-keys: node_modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: node_modules-${{ github.sha }}
       - run: npm run lint
 
   compile:
@@ -53,11 +53,11 @@ jobs:
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
-          key: node_modules-${{ hashFiles('package-lock.json') }}
+          key: node_modules-${{ github.sha }}
           path: |
             ./node_modules
             ./dist
-          restore-keys: node_modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: node_modules-${{ github.sha }}
       - run: npm run build
 
   test:
@@ -71,11 +71,11 @@ jobs:
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
-          key: node_modules-${{ hashFiles('package-lock.json') }}
+          key: node_modules-${{ github.sha }}
           path: |
             ./node_modules
             ./dist
-          restore-keys: node_modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: node_modules-${{ github.sha }}
       - run: npm run test
 
   publish:
@@ -92,11 +92,11 @@ jobs:
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
-          key: node_modules-${{ hashFiles('package-lock.json') }}
+          key: node_modules-${{ github.sha }}
           path: |
             ./node_modules
             ./dist
-          restore-keys: node_modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: node_modules-${{ github.sha }}
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
