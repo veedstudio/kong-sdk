@@ -10,7 +10,7 @@ export abstract class BaseController<T extends BaseResource> {
     this._config = config;
   }
 
-  abstract getResourcePath(): string;
+  abstract getResourcePath(resource?: T): string;
 
   async performRequest<R extends T | T[]>(
     method: Method,
@@ -31,7 +31,7 @@ export abstract class BaseController<T extends BaseResource> {
 
       return response.data as R;
     } catch (e) {
-      if (e.response != undefined) {
+      if ((e as AxiosError).response != undefined) {
         const error = e as AxiosError;
         throw new APIError(
           error.response!.status,
@@ -40,7 +40,9 @@ export abstract class BaseController<T extends BaseResource> {
       }
       throw new APIError(
         ErrorCode.UNKNOWN_ERROR,
-        `Unexpected error occurred performing the request: ${e.message}`
+        `Unexpected error occurred performing the request: ${
+          (e as Error).message
+        }`
       );
     }
   }
@@ -49,7 +51,7 @@ export abstract class BaseController<T extends BaseResource> {
       throw new APIError(1, 'Resource name must be defined');
     }
 
-    return await this.performRequest<T>(
+    return this.performRequest<T>(
       'post',
       `${this.getResourcePath()}`,
       resource
@@ -66,7 +68,7 @@ export abstract class BaseController<T extends BaseResource> {
     delete resource.id;
     delete resource.name;
 
-    return await this.performRequest<T>(
+    return this.performRequest<T>(
       'put',
       `${this.getResourcePath()}/${nameOrID}`,
       resource
@@ -75,7 +77,7 @@ export abstract class BaseController<T extends BaseResource> {
 
   async update(resource: T): Promise<T> {
     const nameOrID = resource.id || resource.name;
-    return await this.performRequest<T>(
+    return this.performRequest<T>(
       'patch',
       `${this.getResourcePath()}/${nameOrID}`,
       resource
@@ -84,12 +86,12 @@ export abstract class BaseController<T extends BaseResource> {
 
   async get(idOrName?: string): Promise<T | T[]> {
     if (idOrName) {
-      return await this.performRequest<T>(
+      return this.performRequest<T>(
         'get',
         `${this.getResourcePath()}/${idOrName}`
       );
     }
-    return await this.performRequest<T[]>('get', this.getResourcePath());
+    return this.performRequest<T[]>('get', this.getResourcePath());
   }
 
   async delete(idOrName: string): Promise<T> {
@@ -100,7 +102,7 @@ export abstract class BaseController<T extends BaseResource> {
       );
     }
 
-    return await this.performRequest(
+    return this.performRequest(
       'delete',
       `${this.getResourcePath()}/${idOrName}`
     );

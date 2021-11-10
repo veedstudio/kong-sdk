@@ -6,3 +6,5 @@ export * from './plugin';
 export * from './protocols';
 export * from './route';
 export * from './service';
+export * from './target';
+export * from './upstream';
