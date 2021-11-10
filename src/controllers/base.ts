@@ -53,7 +53,7 @@ export abstract class BaseController<T extends BaseResource> {
 
     return this.performRequest<T>(
       'post',
-      `${this.getResourcePath()}`,
+      `${this.getResourcePath(resource)}`,
       resource
     );
   }
@@ -70,7 +70,7 @@ export abstract class BaseController<T extends BaseResource> {
 
     return this.performRequest<T>(
       'put',
-      `${this.getResourcePath()}/${nameOrID}`,
+      `${this.getResourcePath(resource)}/${nameOrID}`,
       resource
     );
   }
@@ -79,7 +79,7 @@ export abstract class BaseController<T extends BaseResource> {
     const nameOrID = resource.id || resource.name;
     return this.performRequest<T>(
       'patch',
-      `${this.getResourcePath()}/${nameOrID}`,
+      `${this.getResourcePath(resource)}/${nameOrID}`,
       resource
     );
   }

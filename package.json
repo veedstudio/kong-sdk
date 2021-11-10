@@ -1,6 +1,6 @@
 {
   "name": "@veed-io/kong-sdk",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "The open source Kong SDK built by VEED",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
