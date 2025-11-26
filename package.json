@@ -1,6 +1,6 @@
 {
   "name": "@veed-io/kong-sdk",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "The open source Kong SDK built by VEED",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,12 +29,13 @@
   },
   "homepage": "https://github.com/veedstudio/kong-sdk#readme",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^1.13.2"
   },
   "devDependencies": {
     "@types/node": "^15.6.1",
     "prettier": "^2.3.0",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
-  }
+  },
+  "packageManager": "pnpm@10.23.0+sha512.21c4e5698002ade97e4efe8b8b4a89a8de3c85a37919f957e7a0f30f38fbc5bbdd05980ffe29179b2fb6e6e691242e098d945d1601772cad0fef5fb6411e2a4b"
 }
